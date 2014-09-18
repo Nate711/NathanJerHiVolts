@@ -4,7 +4,7 @@ public abstract class GameObject {
 	int x_coor,y_coor;
 	boolean alive;
 	
-	char gameMap[][] = new char[14][14]; // 'p' = player, 'm' = mho, 'f' = fence, 'e' = empty
+	char gameMap[][] = new char[12][12]; // 'p' = player, 'm' = mho, 'f' = fence, 'e' = empty
 	
 	GameObject(int x, int y) {
 		x_coor = x;

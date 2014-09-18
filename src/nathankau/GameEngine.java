@@ -21,18 +21,33 @@ public class GameEngine {
 	RenderEngine hivoltsRenderer;
 	
 	boolean gameOn = true;
+	
+	public void restart() {
+		staticFences.clear();
+		activeFences.clear();
+		mhos.clear();
+		init();
+		gameOn = true;
+	}
+	
 	public void gameOver() {
 		gameOn = false;
+		System.out.println("YOU DIED");
 	}
 	public void turn(char key) {
+		char oldMap[][] = getMap();
 		p1.makeMove(key);
+		if(oldMap[p1.getX()][p1.getY()] == 'f' || oldMap[p1.getX()][p1.getY()] == 'm') {
+			p1.die();
+			gameOver();
+		}
+		
 		for(Mho mho: mhos) {
-			char oldMap[][] = getMap();
+			oldMap = getMap();
 			mho.updateGameSense(oldMap);
 			mho.makeMove();
 			
 			
-			//char map[][] = getMap();
 			if(oldMap[mho.getX()][mho.getY()] == 'p') {
 				p1.die();
 				gameOver();

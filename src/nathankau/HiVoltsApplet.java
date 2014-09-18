@@ -23,6 +23,10 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 	         e.consume();
 	         System.out.println(c);
 	      }
+	      if (c == 'r') {
+	    	  hivolts.restart();
+	      }
+	      
 	      hivolts.turn(c);
 	      
 	      repaint();
