@@ -14,18 +14,29 @@ public class RenderEngine implements ImageObserver{
 	Graphics g;
 	
 	int width,height;
-	int cellSize;
+	double cellSize;
 	Image player, mho, fence;
+	
+	double imageSpacingFactor = .8; // the ratio of the width of the empty spaces between sprites to the width of the sprite
+	
 	RenderEngine(int w,int h, Image player, Image mho, Image fence) {
 		width = w;
 		height = h;
-		cellSize = Math.min(width,height)/12;
+		cellSize = Math.min(width,height)/12.0;
 	}
+	/*
 	RenderEngine(int w,int h) {
 		width = w;
 		height = h;
 		cellSize = Math.min(width,height)/12;
 	}
+	*/
+	public void setImages(Image p, Image m, Image f) {
+		player = p;
+		mho = m;
+		fence = f;
+	}
+	
 	void drawMho(int x, int y) {
 		
 	}
@@ -34,10 +45,7 @@ public class RenderEngine implements ImageObserver{
 		g.fillRect(0,0,width,height);
 	}
 	
-	void renderPlayer(int x, int y, Graphics g) {
-		g.drawImage(player,x*cellSize,y*cellSize,cellSize-2,cellSize-2,this);
-	}
-	
+
 	void renderScene(char[][] gameMap, Graphics g) {
 		// gameMap is not matrix indexed, instead, the first index is the x value, the 2nd is the y value
 		int sizeX = gameMap[0].length;
@@ -45,26 +53,28 @@ public class RenderEngine implements ImageObserver{
 		
 		for(int i=0; i<sizeY; i++) { // i is x positions
 			for(int j=0; j<sizeX; j++) { // j is y positions
-				Color c;
+				Image sprite = null;
+				
+				boolean empty = false;
 				switch(gameMap[i][j]) {
 					case 'm':
-						c=Color.red;
+						sprite = mho;
 						break;
 					case 'p':
-						c=Color.white;
+						sprite = player;
 						break;
 					case 'f':
-						c=Color.black;
+						sprite = fence;
 						break;
 					case ' ':
-						c=Color.gray;
+						empty=true;
 						break;
 					default:
-						c = Color.yellow;
 						break;
 				}
-				g.setColor(c);
-				g.fillRect(i*cellSize, j*cellSize, cellSize-1, cellSize-1);
+				
+				if(!empty) g.drawImage(sprite, (int)(i*cellSize), (int)(j*cellSize), 
+						(int)(cellSize/(1+imageSpacingFactor)), (int)(cellSize/(1+imageSpacingFactor)), this);
 				
 				System.out.print(gameMap[i][j] + " ");
 			}

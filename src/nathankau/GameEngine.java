@@ -1,6 +1,7 @@
 package nathankau;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,8 +21,18 @@ public class GameEngine {
 
 	RenderEngine hivoltsRenderer;
 	
-	boolean gameOn = true;
+	Image player,fence,mho;
 	
+	boolean gameOn = true;
+	GameEngine(int w,int h) {
+		width=w;
+		height=h;
+		hivoltsRenderer = new RenderEngine(width,height,player,mho,fence);
+	}
+	
+	public void setImages(Image p, Image m, Image f) {
+		hivoltsRenderer.setImages(p, m, f);
+	}
 	public void restart() {
 		staticFences.clear();
 		activeFences.clear();
@@ -61,11 +72,7 @@ public class GameEngine {
 		// who dies?
 	}
 	
-	GameEngine(int w,int h) {
-		width=w;
-		height=h;
-		hivoltsRenderer = new RenderEngine(width,height);
-	}
+	
 	public void init() {
 		ArrayList<Integer> positions = new ArrayList<Integer>();
 		for(int i=0; i<activeBoardSize; i++) {
