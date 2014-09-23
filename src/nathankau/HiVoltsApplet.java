@@ -51,6 +51,7 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 	        
 	      if (c == 'r') {
 	    	  hivolts.restart();
+	    	  repaint();
 	      }
 	      String moves = "qweasdzxc ";
 	      if(moves.indexOf(c) == -1) {
