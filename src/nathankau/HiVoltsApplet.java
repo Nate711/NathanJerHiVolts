@@ -14,7 +14,10 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 		hivolts.init();
 	}
 	public void paint(Graphics gr) {
-		hivolts.render(gr);
+		//hivolts.render(gr);
+		Image myImage = getImage(getCodeBase(), "resources\\fence.jpg");
+		gr.drawImage(myImage, 0,0,20,20, this);
+		//System.out.println("hello");
 	}
 	
 	public void keyTyped( KeyEvent e ) {
