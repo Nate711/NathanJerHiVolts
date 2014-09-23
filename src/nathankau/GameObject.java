@@ -28,6 +28,5 @@ public abstract class GameObject {
 	int getX() { return x_coor;}
 	int getY() {return y_coor;}
 	
-	abstract void updateGameSense(char[][] newGameMap); // get the game, map, figure out where the player is, etc
-	abstract void makeMove(); // calculate the appropriate move and make it
+	
 }

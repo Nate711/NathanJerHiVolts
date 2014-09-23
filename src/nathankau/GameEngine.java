@@ -44,7 +44,7 @@ public class GameEngine {
 		
 		for(Mho mho: mhos) {
 			oldMap = getMap();
-			mho.updateGameSense(oldMap);
+			mho.updateGameSense(oldMap, p1);
 			mho.makeMove();
 			
 			
