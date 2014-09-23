@@ -3,21 +3,43 @@ package nathankau;
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 public class HiVoltsApplet extends Applet implements KeyListener {
 	GameEngine hivolts;
 	
+	Image mho;
+	Image player;
+	Image fence;
+	
 	public void init() {
+		try {
+			mho = ImageIO.read(new URL(getCodeBase(), "nathankau\\mho.png"));
+			player = ImageIO.read(new URL(getCodeBase(), "nathankau\\player.png"));
+			fence = ImageIO.read(new URL(getCodeBase(), "nathankau\\fence.png"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setSize(600,600);
+		setBackground(Color.black);
 		hivolts = new GameEngine(600,600);
+		hivolts.setImages(player,mho,fence);
+		
 		addKeyListener(this);
 		hivolts.init();
 	}
 	public void paint(Graphics gr) {
 		hivolts.render(gr);
-		Image myImage = getImage(getCodeBase(), "resources\\fence.jpg");
-		gr.drawImage(myImage, 0,0,20,20, this);
-		//System.out.println("hello");
+
 	}
 	
 	public void keyTyped( KeyEvent e ) {
@@ -26,6 +48,13 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 	         e.consume();
 	         System.out.println(c);
 	      }
+	      
+	      String moves = "qweasdzxcr ";
+	      
+	      if(moves.indexOf(c) == -1) {
+	    	  return;
+	      }
+	      
 	      if (c == 'r') {
 	    	  hivolts.restart();
 	      }
