@@ -26,10 +26,12 @@ public class Mho extends GameObject {
 		int x_distance;
 		int y_distance;
 		
-		if(x_coor - px > 0) x_distance = x_coor = px;
+		if(!alive) return;
+		
+		if(x_coor - px > 0) x_distance = x_coor - px;
 		else x_distance = px - x_coor;
 		
-		if(y_coor - py > 0) y_distance = y_coor = py;
+		if(y_coor - py > 0) y_distance = y_coor - py;
 		else y_distance = py - y_coor;
 		
 		
@@ -41,12 +43,12 @@ public class Mho extends GameObject {
 			else if(x_coor < px) x_coor++;
 		}else{
 			if(x_distance > y_distance){
-				if(y_coor > py) y_coor--;
-				else if(y_coor < py) y_coor++;
-			}
-			else if(y_distance > x_distance){
 				if(x_coor > px) x_coor--;
 				else if(x_coor < px) x_coor++;
+			}
+			else if(y_distance > x_distance){
+				if(y_coor > py) y_coor--;
+				else if(y_coor < py) y_coor++;
 			}
 			else{
 				if(x_coor > px) x_coor--;

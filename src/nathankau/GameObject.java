@@ -2,7 +2,7 @@ package nathankau;
 
 public abstract class GameObject {
 	int x_coor,y_coor;
-	boolean alive;
+	boolean alive = true;
 	
 	char gameMap[][] = new char[12][12]; // 'p' = player, 'm' = mho, 'f' = fence, 'e' = empty
 	
