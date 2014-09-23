@@ -24,6 +24,7 @@ public class GameEngine {
 	Image player,fence,mho;
 	
 	boolean gameOn = true;
+	
 	GameEngine(int w,int h) {
 		width=w;
 		height=h;
@@ -34,10 +35,8 @@ public class GameEngine {
 		hivoltsRenderer.setImages(p, m, f);
 	}
 	public void restart() {
-		staticFences.clear();
-		activeFences.clear();
-		mhos.clear();
-		init();
+		
+		debugInit();
 		gameOn = true;
 	}
 	
@@ -51,6 +50,7 @@ public class GameEngine {
 		if(oldMap[p1.getX()][p1.getY()] == 'f' || oldMap[p1.getX()][p1.getY()] == 'm') {
 			p1.die();
 			gameOver();
+			return;
 		}
 		
 		for(Mho mho: mhos) {
@@ -62,16 +62,27 @@ public class GameEngine {
 			if(oldMap[mho.getX()][mho.getY()] == 'p') {
 				p1.die();
 				gameOver();
+				return;
 			}
 			
 			if(oldMap[mho.getX()][mho.getY()] == 'f') {
 				mho.die();
+				//mhos.remove(mho);
 			}
 		}
 		// mhos make moves
 		// who dies?
 	}
 	
+	public void debugInit() {
+		staticFences.clear();
+		activeFences.clear();
+		mhos.clear();
+		
+		p1 = new Player(0,0);
+		activeFences.add(new Fence(1,0));
+		mhos.add(new Mho(2,0));
+	}
 	
 	public void init() {
 		ArrayList<Integer> positions = new ArrayList<Integer>();
@@ -82,6 +93,9 @@ public class GameEngine {
 		}
 		Collections.shuffle(positions);
 		
+		staticFences.clear();
+		activeFences.clear();
+		mhos.clear();
 		
 		int i=0;
 		for(; i<numMhos;i++) {

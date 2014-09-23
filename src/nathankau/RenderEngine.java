@@ -41,7 +41,7 @@ public class RenderEngine implements ImageObserver{
 		
 	}
 	void renderDeath(Graphics g) {
-		g.setColor(Color.black);
+		g.setColor(Color.red);
 		g.fillRect(0,0,width,height);
 	}
 	
