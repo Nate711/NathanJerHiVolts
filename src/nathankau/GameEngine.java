@@ -36,7 +36,7 @@ public class GameEngine {
 	}
 	public void restart() {
 		
-		debugInit();
+		init();
 		gameOn = true;
 	}
 	
@@ -80,8 +80,8 @@ public class GameEngine {
 		mhos.clear();
 		
 		p1 = new Player(0,0);
-		activeFences.add(new Fence(1,0));
-		mhos.add(new Mho(2,0));
+		activeFences.add(new Fence(4,0));
+		mhos.add(new Mho(3,0));
 	}
 	
 	public void init() {

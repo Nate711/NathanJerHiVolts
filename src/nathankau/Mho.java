@@ -28,7 +28,6 @@ public class Mho extends GameObject {
 		
 		if(!alive) return;
 		
-
 		if(x_coor - px > 0) x_distance = x_coor - px;
 		else x_distance = px - x_coor;
 		
