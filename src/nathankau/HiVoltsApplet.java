@@ -29,9 +29,9 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 			e.printStackTrace();
 		}
 		
-		setSize(600,600);
+		setSize(800,800);
 		setBackground(Color.black);
-		hivolts = new GameEngine(600,600);
+		hivolts = new GameEngine(getWidth(),getHeight());
 		hivolts.setImages(player,mho,fence);
 		
 		addKeyListener(this);
