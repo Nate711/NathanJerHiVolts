@@ -10,13 +10,10 @@ public abstract class GameObject {
 		x_coor = x;
 		y_coor = y;
 	}
-	GameObject() {
-		
-	}
 	void die() {
 		alive = false;
 	}
-	
+	void makeMove() {}
 	void updateGameMap(char[][] newGameMap) {
 		for(int i=0; i<gameMap.length; i++) {
 			for(int j=0; j<gameMap[0].length; j++) {
@@ -26,7 +23,5 @@ public abstract class GameObject {
 	}
 	
 	int getX() { return x_coor;}
-	int getY() {return y_coor;}
-	
-	
+	int getY() {return y_coor;}	
 }
