@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class GameEngine {
 	Player p1;
@@ -14,8 +15,8 @@ public class GameEngine {
 	
 	int activeBoardSize = 10;
 	int boardSize = activeBoardSize+2;
-	int numMhos = 3;
-	int numActiveFences=3;
+	int numMhos = 10;
+	int numActiveFences=10;
 	
 	int width,height;
 
@@ -46,29 +47,50 @@ public class GameEngine {
 	}
 	public void turn(char key) {
 		char oldMap[][] = getMap();
-		p1.makeMove(key);
+		
+		if(key == 'j') {
+			boolean foundSpot = false;
+			while(!foundSpot) {
+				int x = (int)(Math.random()*activeBoardSize);
+				int y = (int)(Math.random()*activeBoardSize);
+				if(oldMap[x][y] == ' ' || oldMap[x][y] == 'm') {
+					p1.jump(x, y);
+					foundSpot = true;
+				}
+			}
+		}
+		else {
+			p1.makeMove(key);
+		}
+		
+		
 		if(oldMap[p1.getX()][p1.getY()] == 'f' || oldMap[p1.getX()][p1.getY()] == 'm') {
 			p1.die();
 			gameOver();
 			return;
 		}
 		
-		for(Mho mho: mhos) {
+		for(Iterator<Mho> iterator = mhos.iterator(); iterator.hasNext();) {
 			oldMap = getMap();
+			
+			Mho mho = iterator.next();
 			mho.updateGameSense(oldMap, p1);
 			mho.makeMove();
 			
-			
-			if(oldMap[mho.getX()][mho.getY()] == 'p') {
+			// Kill the player if the mho moves onto them
+			if(mho.getX() == p1.getX() && mho.getY() == p1.getY()) {
 				p1.die();
 				gameOver();
 				return;
 			}
 			
+			
+			// Kill the Mho if it's on a fence
 			if(oldMap[mho.getX()][mho.getY()] == 'f') {
 				mho.die();
-				//mhos.remove(mho);
+				iterator.remove();
 			}
+			
 		}
 		// mhos make moves
 		// who dies?
@@ -81,7 +103,7 @@ public class GameEngine {
 		
 		p1 = new Player(0,0);
 		activeFences.add(new Fence(4,0));
-		mhos.add(new Mho(3,0));
+		mhos.add(new Mho(6,0));
 	}
 	
 	public void init() {

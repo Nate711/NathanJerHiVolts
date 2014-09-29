@@ -35,8 +35,8 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 		hivolts.setImages(player,mho,fence);
 		
 		addKeyListener(this);
-		//hivolts.init();
-		hivolts.debugInit();
+		hivolts.init();
+		//hivolts.debugInit();
 	}
 	public void paint(Graphics gr) {
 		hivolts.render(gr);
@@ -56,14 +56,13 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 	    	  repaint();
 	      }
 	      
-	      String moves = "qweasdzxc ";
+	      String moves = "qweasdzxcj";
 	      
 	      if(moves.indexOf(c) == -1) {
 	    	  repaint();
 	    	  return;
 	      }
 	  
-	      
 	      
 	      hivolts.turn(c);
 	      

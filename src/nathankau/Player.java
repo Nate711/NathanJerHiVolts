@@ -5,11 +5,17 @@ public class Player extends GameObject {
 		super(x,y);
 	}
 	public void updateGameSense(char[][] newGameMap) {
-		//updateGameMap(newGameMap);
+		updateGameMap(newGameMap);
 	}
 	public void die() {
 		alive = false;
 	}
+	
+	public void jump(int x, int y) {
+		x_coor = x;
+		y_coor = y;
+	}
+	
 	public void makeMove() {}
 	public void makeMove(char c) {
 		switch(c) {
