@@ -15,7 +15,7 @@ public class GameEngine {
 	
 	int activeBoardSize = 10;
 	int boardSize = activeBoardSize+2;
-	int numMhos = 10;
+	int numMhos = 1;
 	int numActiveFences=10;
 	
 	int width,height;
@@ -24,7 +24,7 @@ public class GameEngine {
 	
 	Image player,fence,mho;
 	
-	boolean gameOn = true;
+	int gameState = 1;
 	
 	GameEngine(int w,int h) {
 		width=w;
@@ -38,11 +38,11 @@ public class GameEngine {
 	public void restart() {
 		
 		init();
-		gameOn = true;
+		gameState = 1;
 	}
 	
 	public void gameOver() {
-		gameOn = false;
+		gameState = 0;
 		System.out.println("YOU DIED");
 	}
 	public void turn(char key) {
@@ -90,7 +90,10 @@ public class GameEngine {
 				mho.die();
 				iterator.remove();
 			}
-			
+		}
+		
+		if(mhos.isEmpty()) {
+			gameState = 2;
 		}
 		// mhos make moves
 		// who dies?
@@ -140,9 +143,12 @@ public class GameEngine {
 	}
 	
 	public void render(Graphics g) {
-		if(gameOn) hivoltsRenderer.renderScene(getMap(),g);
-		else {
+		if(gameState==1) hivoltsRenderer.renderScene(getMap(),g);
+		else if(gameState==0) {
 			hivoltsRenderer.renderDeath(g);
+		}
+		else {
+			hivoltsRenderer.renderWin(g);
 		}
 	}
 	

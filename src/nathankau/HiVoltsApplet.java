@@ -30,6 +30,8 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 		}
 		
 		setSize(800,800);
+		
+		
 		setBackground(Color.black);
 		hivolts = new GameEngine(getWidth(),getHeight());
 		hivolts.setImages(player,mho,fence);

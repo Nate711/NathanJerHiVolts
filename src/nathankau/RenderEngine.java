@@ -14,23 +14,28 @@ public class RenderEngine implements ImageObserver{
 	Graphics g;
 	
 	int width,height;
+	
+	int sideBuffer = 60;
+	int topBuffer = 60;
+	int bottomBuffer = 100;
+	
+	int activeWidth, activeHeight;
+	
 	double cellSize;
 	Image player, mho, fence;
 	
-	double imageSpacingFactor = .8; // the ratio of the width of the empty spaces between sprites to the width of the sprite
+	double imageSpacingFactor = .7; // the ratio of the width of the empty spaces between sprites to the width of the sprite
 	
 	RenderEngine(int w,int h, Image player, Image mho, Image fence) {
 		width = w;
 		height = h;
-		cellSize = Math.min(width,height)/12.0;
+		activeWidth = width-2*sideBuffer;
+		activeHeight = height-topBuffer-bottomBuffer;
+		
+		cellSize = activeWidth/(11.0+imageSpacingFactor);
+		// there's a border on the right/bottom because the image doesn't take up the entire screen, must fix
 	}
-	/*
-	RenderEngine(int w,int h) {
-		width = w;
-		height = h;
-		cellSize = Math.min(width,height)/12;
-	}
-	*/
+
 	public void setImages(Image p, Image m, Image f) {
 		player = p;
 		mho = m;
@@ -44,7 +49,10 @@ public class RenderEngine implements ImageObserver{
 		g.setColor(Color.red);
 		g.fillRect(0,0,width,height);
 	}
-	
+	void renderWin(Graphics g) {
+		g.setColor(Color.green);
+		g.fillRect(0, 0, width, height);
+	}
 
 	void renderScene(char[][] gameMap, Graphics g) {
 		// gameMap is not matrix indexed, instead, the first index is the x value, the 2nd is the y value
@@ -73,8 +81,8 @@ public class RenderEngine implements ImageObserver{
 						break;
 				}
 				
-				if(!empty) g.drawImage(sprite, (int)(i*cellSize), (int)(j*cellSize), 
-						(int)(cellSize/(1+imageSpacingFactor)), (int)(cellSize/(1+imageSpacingFactor)), this);
+				if(!empty) g.drawImage(sprite, (int)(i*cellSize)+sideBuffer, (int)(j*cellSize)+topBuffer, 
+						(int)(cellSize*imageSpacingFactor), (int)(cellSize*imageSpacingFactor), this);
 				
 				System.out.print(gameMap[i][j] + " ");
 			}
