@@ -26,6 +26,7 @@ public class GameEngine {
 	
 	int gameState = 1;
 	
+	
 	GameEngine(int w,int h) {
 		width=w;
 		height=h;
@@ -44,6 +45,7 @@ public class GameEngine {
 	public void gameOver() {
 		gameState = 0;
 		System.out.println("YOU DIED");
+		
 	}
 	public void turn(char key) {
 		char oldMap[][] = getMap();
