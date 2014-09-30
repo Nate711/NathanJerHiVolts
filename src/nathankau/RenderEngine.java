@@ -7,6 +7,7 @@ package nathankau;
 import java.applet.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
+import java.text.DecimalFormat;
 
 public class RenderEngine implements ImageObserver{
 	// renderengine probably shouldn't know how to draw each gameobject
@@ -26,6 +27,8 @@ public class RenderEngine implements ImageObserver{
 	
 	double imageSpacingFactor = .7; // the ratio of the width of the empty spaces between sprites to the width of the sprite
 	
+	int total=0,won=0;
+	
 	RenderEngine(int w,int h, Image player, Image mho, Image fence) {
 		width = w;
 		height = h;
@@ -41,17 +44,19 @@ public class RenderEngine implements ImageObserver{
 		mho = m;
 		fence = f;
 	}
-	
-	void drawMho(int x, int y) {
-		
-	}
+
 	void renderDeath(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(0,0,width,height);
+		
+		total++;
 	}
 	void renderWin(Graphics g) {
 		g.setColor(Color.green);
 		g.fillRect(0, 0, width, height);
+		
+		total++;
+		won++;
 	}
 
 	void renderScene(char[][] gameMap, Graphics g) {
@@ -88,7 +93,25 @@ public class RenderEngine implements ImageObserver{
 			}
 			System.out.println();
 		}
+		String winsOutOf=" wins out of ";
+		if(won == 1) {
+			winsOutOf = " win out of ";
+		}
+
+		String gamesWon = won + winsOutOf + (total) + " games. You've won " + Math.round((double)(won*100)/(total)) + "% of games.";
+		
+		g.setColor(new Color(255,144,0));
+		Font font = new Font("Times New Roman", Font.PLAIN,30);
+		g.setFont(font);
+		g.drawString(gamesWon, sideBuffer, 800);
+		
 	}
+	
+	void setGamesWonTotalt(int won, int lost) {
+		this.won = won;
+		this.total = lost;
+	}
+	
 	@Override
 	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3,
 			int arg4, int arg5) {
