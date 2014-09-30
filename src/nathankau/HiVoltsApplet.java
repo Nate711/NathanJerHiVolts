@@ -29,7 +29,7 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 			e.printStackTrace();
 		}
 		
-		setSize(800,800);
+		setSize(800,1000);
 		
 		
 		setBackground(Color.black);
