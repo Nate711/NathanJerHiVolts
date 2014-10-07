@@ -46,15 +46,41 @@ public class RenderEngine implements ImageObserver{
 	}
 
 	void renderDeath(Graphics g) {
-		g.setColor(Color.red);
+		g.setColor(Color.black);
 		g.fillRect(0,0,width,height);
 		
+		
+		g.setColor(new Color(255,144,0));
+		
+		Font font = new Font("OCR A Extended", Font.PLAIN,50);
+		g.setFont(font);
+		g.drawString("YOU DIED", width/2-120, height/2);
+		
+		
+		font = new Font("OCR A Extended", Font.PLAIN,30);
+		g.setFont(font);
+		
+		
+		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
 		total++;
 	}
 	void renderWin(Graphics g) {
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, width, height);
 		
+		g.setColor(new Color(255,144,0));
+		
+		Font font = new Font("OCR A Extended", Font.PLAIN,50);
+		g.setFont(font);
+		
+		
+		g.drawString("YOU WIN", width/2-120, height/2);
+		
+		font = new Font("OCR A Extended", Font.PLAIN,30);
+		g.setFont(font);
+		
+		
+		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
 		total++;
 		won++;
 	}
@@ -101,7 +127,7 @@ public class RenderEngine implements ImageObserver{
 		String gamesWon = won + winsOutOf + (total) + " games. You've won " + Math.round((double)(won*100)/(total)) + "% of games.";
 		
 		g.setColor(new Color(255,144,0));
-		Font font = new Font("Times New Roman", Font.PLAIN,30);
+		Font font = new Font("OCR A Extended", Font.PLAIN,24);
 		g.setFont(font);
 		g.drawString(gamesWon, sideBuffer, 800);
 		
