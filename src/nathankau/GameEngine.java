@@ -44,7 +44,7 @@ public class GameEngine {
 	
 	public void gameOver() {
 		gameState = 0;
-		System.out.println("YOU DIED");
+		//System.out.println("YOU DIED");
 		
 	}
 	public void turn(char key) {

@@ -85,7 +85,7 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 	      char c = e.getKeyChar();
 	      if ( c != KeyEvent.CHAR_UNDEFINED ) {
 	         e.consume();
-	         System.out.println(c);
+	         //System.out.println(c);
 	      }
 
 	      if (c == 'r') {

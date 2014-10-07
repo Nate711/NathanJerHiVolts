@@ -55,12 +55,11 @@ public class Mho extends GameObject {
 		boolean isDiagFenceFree = gameMap[x_coor+x_direction][y_coor+y_direction] != 'f'; // is there a fence at the diagonal?
 		boolean isDiagMhoFree =  gameMap[x_coor+x_direction][y_coor+y_direction] != 'm'; // is there a mho at the diag?
 		
-		if(isDiagFenceFree) { // make the diag move if there isn't a fence
+		if(isDiagFenceFree && isDiagMhoFree) { // make the diag move if there isn't a fence
 			x_coor+=x_direction;
 			y_coor+=y_direction;
 			return;
 		}
-		
 		// invariant: the diagonal was not possible because a fence was there
 		
 		// check for option 2 and 3 -- the square move
@@ -73,29 +72,29 @@ public class Mho extends GameObject {
 		boolean isVertMhoFree = gameMap[x_coor][y_coor+y_direction] != 'm';
 		
 		if(isHorzGreater) { // vert distance is more
-			if(isHorzFenceFree) {
+			if(isHorzFenceFree && isHorzMhoFree) {
 				x_coor+=x_direction;
 				return;
 			}
 		} else { // horz distance is more
-			if(isVertFenceFree) {
+			if(isVertFenceFree && isVertMhoFree) {
 				y_coor+=y_direction;
 				return;
 			}
 		}
 		
 		// invariant: the diagonal was a no-go, the best square move was a no-go
-		if(isVertFenceFree) {
+		if(isVertFenceFree && isVertMhoFree) {
 			y_coor+=y_direction;
 			return;
 		}
-		if(isHorzFenceFree) {
+		if(isHorzFenceFree && isHorzMhoFree) {
 			x_coor+=x_direction;
 			return;
 		}
 		// invariant: both the diagonals and the square moves have fences -- invariant ID = 01
 		// check that invariant
-		if(!isDiagFenceFree || !isHorzFenceFree || !isVertFenceFree) {
+		if((isDiagFenceFree&&isDiagMhoFree) || (isHorzFenceFree&&isHorzMhoFree) || (isVertFenceFree&&isVertMhoFree)) {
 			System.out.println("Invariant 01 was not true. Ay yaaa");
 		}
 		
@@ -117,10 +116,11 @@ public class Mho extends GameObject {
 		}
 		
 		// invariant: both the diagonals and the square moves have mhos -- invariant ID = 02
-		if(!isDiagMhoFree || !isHorzMhoFree || !isVertMhoFree) {
+		if(isDiagMhoFree || isHorzMhoFree || isVertMhoFree) {
 			System.out.println("Invariant 02 was not true. Ay yaaa");
 		}
 		
+		System.out.println("Mho Stayed Put");
 		// got to stay put!!!!!
 		return;
 	}
