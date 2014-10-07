@@ -37,8 +37,8 @@ public class HiVoltsApplet extends Applet implements KeyListener {
 		hivolts.setImages(player,mho,fence);
 		
 		addKeyListener(this);
-		hivolts.init();
-		//hivolts.debugInit();
+		//hivolts.init();
+		hivolts.debugInit();
 	}
 	public void paint(Graphics gr) {
 		hivolts.render(gr);

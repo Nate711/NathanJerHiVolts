@@ -89,9 +89,9 @@ public class RenderEngine implements ImageObserver{
 				if(!empty) g.drawImage(sprite, (int)(i*cellSize)+sideBuffer, (int)(j*cellSize)+topBuffer, 
 						(int)(cellSize*imageSpacingFactor), (int)(cellSize*imageSpacingFactor), this);
 				
-				System.out.print(gameMap[i][j] + " ");
+				//System.out.print(gameMap[i][j] + " ");
 			}
-			System.out.println();
+			//System.out.println();
 		}
 		String winsOutOf=" wins out of ";
 		if(won == 1) {
