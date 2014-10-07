@@ -62,7 +62,7 @@ public class RenderEngine implements ImageObserver{
 		
 		g.setFont(MEDIUM);
 		
-		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
+		g.drawString("PRESS R TO RESTART", width/2-160, height/2+100);
 		total++;
 	}
 	void renderWin(Graphics g) {
@@ -79,7 +79,7 @@ public class RenderEngine implements ImageObserver{
 		g.setFont(MEDIUM);
 		
 		
-		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
+		g.drawString("PRESS R TO RESTART", width/2-160, height/2+100);
 		total++;
 		won++;
 	}
