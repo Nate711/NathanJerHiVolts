@@ -83,6 +83,7 @@ public class Mho extends GameObject {
 				return;
 			}
 		}
+		
 		// invariant: the diagonal was a no-go, the best square move was a no-go
 		if(isVertFenceFree) {
 			y_coor+=y_direction;
