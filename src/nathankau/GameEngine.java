@@ -15,8 +15,8 @@ public class GameEngine {
 	
 	int activeBoardSize = 10;
 	int boardSize = activeBoardSize+2;
-	int numMhos = 10;
-	int numActiveFences=10;
+	int numMhos = 12;
+	int numActiveFences=20;
 	
 	int width,height;
 

@@ -29,6 +29,12 @@ public class RenderEngine implements ImageObserver{
 	
 	int total=0,won=0;
 	
+	Font BIG = new Font("OCR A Extended", Font.PLAIN,50);
+	Font MEDIUM = new Font("OCR A Extended", Font.PLAIN,30);
+	Font SMALL = new Font("OCR A Extended", Font.PLAIN,24);
+	
+	Color THEORANGE = new Color(255,144,0);
+	
 	RenderEngine(int w,int h, Image player, Image mho, Image fence) {
 		width = w;
 		height = h;
@@ -49,17 +55,12 @@ public class RenderEngine implements ImageObserver{
 		g.setColor(Color.black);
 		g.fillRect(0,0,width,height);
 		
+		g.setColor(THEORANGE);
 		
-		g.setColor(new Color(255,144,0));
-		
-		Font font = new Font("OCR A Extended", Font.PLAIN,50);
-		g.setFont(font);
+		g.setFont(BIG);
 		g.drawString("YOU DIED", width/2-120, height/2);
 		
-		
-		font = new Font("OCR A Extended", Font.PLAIN,30);
-		g.setFont(font);
-		
+		g.setFont(MEDIUM);
 		
 		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
 		total++;
@@ -68,16 +69,14 @@ public class RenderEngine implements ImageObserver{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, width, height);
 		
-		g.setColor(new Color(255,144,0));
+		g.setColor(THEORANGE);
 		
-		Font font = new Font("OCR A Extended", Font.PLAIN,50);
-		g.setFont(font);
+		g.setFont(BIG);
 		
 		
 		g.drawString("YOU WIN", width/2-120, height/2);
 		
-		font = new Font("OCR A Extended", Font.PLAIN,30);
-		g.setFont(font);
+		g.setFont(MEDIUM);
 		
 		
 		g.drawString("PRESS R TO RESTART", width/2-140, height/2+100);
