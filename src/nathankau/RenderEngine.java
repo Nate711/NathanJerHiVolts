@@ -7,11 +7,10 @@ package nathankau;
 import java.applet.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.text.DecimalFormat;
 
 public class RenderEngine implements ImageObserver{
 	// renderengine probably shouldn't know how to draw each gameobject
-	int scale;
+
 	Graphics g;
 	
 	int width,height;
@@ -110,6 +109,7 @@ public class RenderEngine implements ImageObserver{
 					default:
 						break;
 				}
+				System.out.println(cellSize*imageSpacingFactor);
 				
 				if(!empty) g.drawImage(sprite, (int)(i*cellSize)+sideBuffer, (int)(j*cellSize)+topBuffer, 
 						(int)(cellSize*imageSpacingFactor), (int)(cellSize*imageSpacingFactor), this);
