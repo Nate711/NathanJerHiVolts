@@ -10,8 +10,6 @@ import java.awt.image.ImageObserver;
 
 public class RenderEngine implements ImageObserver{
 	// renderengine probably shouldn't know how to draw each gameobject
-
-	Graphics g;
 	
 	int width,height;
 	
@@ -130,11 +128,6 @@ public class RenderEngine implements ImageObserver{
 		g.setFont(font);
 		g.drawString(gamesWon, sideBuffer, 800);
 		
-	}
-	
-	void setGamesWonTotalt(int won, int lost) {
-		this.won = won;
-		this.total = lost;
 	}
 	
 	@Override
